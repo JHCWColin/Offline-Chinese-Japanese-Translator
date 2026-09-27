@@ -1,0 +1,13 @@
+plugins { id 'com.android.application' }
+
+android { namespace 'com.offline.jatranslator'; compileSdk 35
+    defaultConfig { applicationId 'com.offline.jatranslator'; minSdk 27; targetSdk 28; versionCode 1; versionName '1.0' }
+    signingConfigs { release { storeFile file('../release-key.jks'); storePassword '一二三四五六七八'; keyAlias 'offline-japanese'; keyPassword '一二三四五六七八' } }
+    buildTypes { release { minifyEnabled false } }
+    lint { checkReleaseBuilds false }
+}
+
+configurations.all { resolutionStrategy.eachDependency { details ->
+    if (details.requested.group == 'org.jetbrains.kotlin') details.useVersion '1.8.22'
+} }
+dependencies { implementation 'androidx.appcompat:appcompat:1.6.1' }
